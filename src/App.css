@@ -1,0 +1,207 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3f3f3;
+  color: #333;
+  height: 100vh;
+}
+
+.App-header {
+  background-color: #0078d4;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.App-container {
+  display: flex;
+  height: calc(100vh - 166px); /* Adjusted height to make space for results */
+  max-width: 100%;
+  padding: 20px;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: white;
+}
+
+.App-left-pane {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  border-right: 1px solid #e1e1e1;
+  overflow-y: auto;
+  padding-right: 20px;
+  min-width: 120px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.App-tab {
+  padding: 12px 20px;
+  margin: 5px 0;
+  cursor: pointer;
+  border: none;
+  display: block;
+  background: #f3f3f3;
+  text-align: left;
+  width: 100%;
+  font-size: 16px;
+  color: #0078d4;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.App-tab:hover {
+  background-color: #e1e1e1;
+}
+
+.App-tab.active {
+  background-color: #0078d4;
+  color: white;
+  font-weight: bold;
+}
+
+.App-right-pane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.App-section-input,
+.App-section-output {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-section-output {
+  margin-top: 10px; /* Adjusted margin */
+}
+
+.App-right-pane h2 {
+  margin: 10px 0 5px;
+  color: #0078d4;
+}
+
+.App-right-pane textarea {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  resize: vertical;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  transition: border 0.3s;
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+.App-right-pane textarea:focus {
+  border-color: #0078d4;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 120, 212, 0.5);
+}
+
+.App-convert-button {
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(90deg, #005a9e, #0078d4);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  align-self: flex-end;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.App-convert-button:hover {
+  background: linear-gradient(90deg, #0078d4, #005a9e);
+  transform: translateY(-2px);
+}
+
+.App-convert-button:active {
+  transform: translateY(0);
+}
+
+.App-results-outer {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 10px; /* Space between result items */
+}
+
+.App-results {
+  background: #f9f9f9;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: left;
+  width: 100%; /* Make sure it fits within the available width */
+}
+
+.App-result-item {
+  flex: 1 1 calc(50% - 10px); /* Items take up 50% of the width minus the gap */
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.App-result-input, .App-result-output {
+  color: black;
+  margin-bottom: 5px;
+}
+
+.App-result-input strong, .App-result-output strong {
+  color: black;
+  display: inline-block;
+  width: 60px;
+}
+
+.App-search-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.App-search-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  color: #888;
+}
+
+.App-search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  transition: border 0.3s;
+}
+
+.App-search-input:focus {
+  border-color: #0078d4;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 120, 212, 0.5);
+}
+
+.App-group {
+  margin-top: 10px;  /* A small vertical space between groups */
+}
+
+.App-group-header {
+  display: flex;
+  cursor: pointer;
+  color: black;
+  justify-content: space-between;
+}
+
+.App-group-tabs {
+  padding-left: 10px;  /* Tabs should be a little left of the group heading to show they belong to the group */
+}

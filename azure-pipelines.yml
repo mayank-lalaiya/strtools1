@@ -1,0 +1,41 @@
+trigger:
+- main  # Replace with your default branch name if different
+
+pool:
+  name: 'Self-Hosted-pool'
+  demands:
+    - Agent.Version -gtVersion 3.243.0
+  
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'  # Set your Node.js version
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build  # If you have a build step; otherwise, remove this line
+  displayName: 'Install dependencies'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+  displayName: 'Archive files'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish artifact'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'mlalaiya_connection'  # Link your Azure subscription
+    appName: 'mlalaiya'  # Your Azure Web App name
+    package: '$(Build.ArtifactStagingDirectory)/*.zip'
+  displayName: 'Deploy to Azure Web App'
